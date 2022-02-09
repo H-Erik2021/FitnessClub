@@ -11,6 +11,7 @@ node_modules/*
 package-lock.json
 docker/mysql
 docker/nginx/logs
-base_de_données/insert-base-donnees.sql
+base_de_données/insert-base-donnee.sql
 base_de_données/sauvegardeProjet.sql
 base_de_données/musquash.sql
+
