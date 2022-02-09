@@ -1,0 +1,35 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste du/des Type de Salle{% endblock %}
+{% block content %}
+{% if typeSalles|length %}
+    <h1 class="text-center mt-5">Liste des types de salles&nbsp;
+        <a href="{{ url_for('createtypesalle') }}" title="Ajouter un type de salle" class="btn btn-outline-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <div class="container-fluid text-center table-responsive mt-5">   
+        <table class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr  style="height:50px">
+                    <th>Id</th>
+                    <th>nomTypeSalle</th>                
+                    <th class="text-info">Actions</th>
+                </tr>
+            </thead>   
+            {% for typeSalle in typeSalles %}
+            <tbody>
+                <tr>
+                    <td>{{ typeSalle.id }}</td>
+                    <td>{{ typeSalle.nomTypeSalle|upper }}</td>                    
+                    <td>
+                        <a href="{{ url_for('modifytypesalle', { 'id': typeSalle.id }) }}" title="Modifier" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                        <a href="{{ url_for('deletetypesalle', { 'id': typeSalle.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+            </tbody>   
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}

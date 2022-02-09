@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Projet NFA021</title>
+    {% block stylesheet %}
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <link rel="stylesheet" href="assets/css/monstyle.css">
+      <link rel="stylesheet" href="assets/css/fitness.css">
+    {% endblock %}
+  </head>
+  <body style="background-image:url(photos/Teams.png); background-size:cover;">
+
+    <nav class="navbar navbar-light" style="background-color:rgba(050, 050, 050, 0.7);">
+      <a class="nav-brand" href="{{ url_for('pageAccueil') }}" style="color:#f58a4b">MUSQUASH Club<img src="photos/logo2.png" alt="logo"/></a>
+      <a class="nav-link text-light" href="{{ url_for('pageMusculation') }}"> Espace Musculation</a>
+      <a class="nav-link text-light" href="{{ url_for('pageSquash') }}"> Espace Squash</a>
+      <a class="nav-link text-light" href="{{ url_for('pageGymnastique') }}"> Espace Gymnastique</a>
+      <a class="nav-link text-light" href="{{ url_for('pageCoach') }}"> Notre équipe</a>
+      <a class="nav-link text-light" href="{{ url_for('pageTarifs') }}"> Tarifs</a>
+      <a class="nav-link text-light" href="{{ url_for('signup') }}"> S'incrire</a>
+      <a class="nav-link text-light" href="{{ url_for('app_login') }}">Connexion</a>
+     <!--<div class="reservio-booking-button" data-business-id="LQVnicECMC" data-text="Prendre RDV" data-bgcolor="#cf0d00" data-color="#fff"></div>-->
+    </nav>
+ {# Alertes diverses #}
+    {% if alert is defined and alert is not empty %}
+      {% for key,messages in alert %}
+      <div class="alert alert-warning" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading">Problème</h4>
+        {% for msg in messages %}
+        {{msg}}<br>
+        {% endfor %}
+      </div>
+      {% endfor %}
+     {% endif %}    
+
+      {% block content %}{% endblock %}
+      </div>
+       <footer style="background-color:rgba(050, 050, 050, 0.7);"> 
+        <div style=" margin-top: 30px; text-align: center; display: inline-block; vertical-align:bottom ; color:#f58a4b; font-size:22px ">
+          <p>Malgré la mise en place de mesures strictes de sécurité dans nos clubs, 
+          nous devons fermer notre club. 
+          Le Sport n'est pas le problème mais la solution.           
+          </p>
+        </div>
+          <p class="text-light">Copyright © 2021 - MUSQUASH CLUB <br />
+              <a style="color:#f58a4b; font-size:20px" href="#">Nous Contacter !</a>
+          </p>
+          <div>
+            <ul class="links">
+              <li class="facebook"><a target="_blank" href="https://www.facebook.com/"<i class="fab fa-facebook-f"></i></a></li>
+              <li class="twitter"><a target="_blank" href="https://twitter.com/"<i class="fab fa-twitter"></i></a></li>
+              <li class="youtube"><a target="_blank" href="https://www.youtube.com/channel/"<i class="fab fa-youtube"></i></a></li>
+              <li class="google-plus"><a target="_blank" href="https://www.google-plus.com/"<i class="fab fa-google-plus-g"></i></a></li>
+            </ul>
+          </div>
+    </footer>
+    {% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+      <script src="{{ url_for('home') }}assets/js/bundle.min.js" charset="utf-8"></script><!-- bundle.js for dev -->
+      <script id="reservio-widgets-script" type="text/javascript" src="https://static.reservio.com/js/widget.js"></script>
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    {% endblock %}
+  </body>
+</html>

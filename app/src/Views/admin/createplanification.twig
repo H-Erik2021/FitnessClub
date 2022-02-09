@@ -1,0 +1,27 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {% endblock %}
+{% block content %}
+<h3 class="text-center">{{ action }}  </h3>
+<div class="container-fluid text-center">
+    <form method="post" action="{{url_for('saveplanification')}}" > 
+        {{ macros.champDateTime('datePlanification', 'DatePlanification :', 'Indiquez la date ', planification.datePlanification|date('Y-m-d') ~ 'T' ~ planification.datePlanification|date('H:i')) }}     
+        {{ macros.champSelectNomSalle('nomSalleId','nom de salle', salles , planification.salle.getId()) }}
+        {{ macros.champSelectTypeCours('typeCoursId','type de cours', typeCours , planification.typeCours.getId()) }}
+        {{ macros.champSelectPerso('persoId','nom personnel', personnels, planification.perso.getId()) }}
+        
+        {{ macros.champCache('id', planification.id) }}
+
+        <div class="form-group text-center row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger"> <a class="text-light" href="{{url_for('showplanification')}}"  style="text-decoration:none"> Annuler </a></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

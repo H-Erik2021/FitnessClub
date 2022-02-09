@@ -1,0 +1,62 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste des Reservations{% endblock %}
+{% block content %}
+
+{% if reservations|length %}
+    <h1 class="text-center mt-5" >Historique des Reservations   
+    </h1>
+
+   <div class="container-fluid text-center table-responsive mt-5">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr style="height:50px">
+                    <th>Id</th>
+                    <th>DatePLanification</th>
+                    <th>Nom de Salle</th>                     
+                    <th>TypeCours</th>
+                    <th>DureeCours</th>
+                    <th>Capacité</th>
+                    <th>Coach</th>
+                    <th>Client</th> 
+                    <th>Etat</th>             
+                    <th class="text-info">Actions</th>
+                </tr>
+            </thead>
+            {% for reservation in reservations %}
+            <tbody>
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.planning.datePlanification|localizeddate('full','short',locale)}}</td> 
+                    <td>{{ reservation.planning.salle.nomSalle}}</td>                  
+                    <td>{{ reservation.planning.typeCours.nomTypeCours}}</td>
+                    <td>{{ reservation.planning.typeCours.DureeCours|date('H:i')}}</td>
+                    <td>{{ reservation.planning.reservations|length }}/ {{ reservation.planning.typeCours.NbMaxDisponibilite}}</td>
+                    <td>{{ reservation.planning.perso.NomPerso}} {{ reservation.planning.perso.PrenomPerso|capitalize }}</td>
+                    <td>{{ reservation.client.NomClient }} {{ reservation.client.PrenomClient|upper }}</td>
+                    
+                    <td>{% set isReserved = false %}
+                    {% for reservation in reservation.planning.reservations %}
+                    {% if reservation.client.id == reservation.client.NomClient %}
+                    {% set isReserved = true %}
+                    {% endif %}
+                    {% endfor %}
+                    {% if isReserved %}Reservation en cours{% else %}
+                      {% if reservation.planning.reservations|length < reservation.planning.typeCours.NbMaxDisponibilite %}
+                      {#<a href="{{ url_for('', { 'idPlanification': planification.id }) }}" ></a>#}
+                      {% else %} Complet {% endif %}
+                    {% endif %} </td>
+                    <td>                                              
+                        <a href="{{ url_for('deletereservation', { 'id': reservation.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %} 
+
+

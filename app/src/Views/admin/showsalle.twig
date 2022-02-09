@@ -1,0 +1,37 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste du/des Personnel(s) correspondant(s){% endblock %}
+{% block content %}
+{% if salles|length %}
+    <h1 class="text-center  mt-5">Liste des salles&nbsp;
+        <a href="{{ url_for('createsalle') }}" title="Ajouter un  de salle" class="btn btn-outline-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <div class="container-fluid text-center table-responsive mt-5">   
+        <table class='table-hover table-striped table-bordered table-dark w-100' class='table-striped w-100'>
+        <thead>
+            <tr style="height:50px">
+                <th>Id</th>
+                <th>NomSalle</th> 
+                <th>NomTypeSalle</th>               
+                <th class="text-info">Actions</th>
+            </tr>
+        </thead>
+            {% for salle in salles %}
+        <tbody>
+            <tr>
+                <td>{{ salle.id }}</td>
+                <td>{{ salle.nomSalle|upper }}</td>
+                <td>{{ salle.typeSalle.nomTypeSalle|upper }}</td>
+                <td>
+                    <a href="{{ url_for('modifysalle', { 'id': salle.id }) }}" title="Modifier" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="{{ url_for('deletesalle', { 'id': salle.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}

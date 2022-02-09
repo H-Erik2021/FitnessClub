@@ -1,0 +1,49 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste des Adhesions{% endblock %}
+{% block content %}
+{% if adhesions|length %}
+    <h1 class="text-center mt-5" >Liste des Adhesions&nbsp;
+        <a href="{{ url_for('createadhesion') }}" title="Ajouter une Adhesion" class="btn btn-outline-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <div class="container-fluid text-center table-responsive mt-5">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr style="height:50px">
+                    <th>Id</th>
+                    <th>Formule</th> 
+                    <th>DureeAdhesion (Mois)</th>
+                    <th>DateAdhesion</th>
+                    <th>Delais écoulé</th>
+                    <th>TarifAdhesion</th>
+                    <th>Client</th>  
+                    <th>NumeroCasier</th> 
+                    <th>DureeResaCasier (Mois)</th> 
+                    <th class="text-info">Actions</th>
+                </tr>
+            </thead>
+            {% for adhesion in adhesions %}
+            <tbody>
+                <tr>
+                    <td>{{ adhesion.id }}</td>
+                    <td>{{ adhesion.formule.nomFormule|capitalize }}</td>               
+                    <td>{{ adhesion.dureeAdhesion}}</td>
+                    <td>{{ adhesion.dateAdhesion|localizeddate('full', 'none', locale)}}</td>
+                    <td>{{ adhesion.dateAdhesion|time_diff}}</td>
+                    <td>{{ adhesion.tarifAdhesion}}</td>
+                    <td>{{ adhesion.client.NomClient|upper }} {{ adhesion.client.PrenomClient|capitalize }}</td>
+                    <td>{{ adhesion.casier.id }}</td>
+                    <td>{{ adhesion.casier.DureeResaCasiers}}</td>
+                    <td>
+                        <a href="{{ url_for('modifyadhesion', { 'id': adhesion.id }) }}" title="Modifier" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                        <a href="{{ url_for('deleteadhesion', { 'id': adhesion.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}

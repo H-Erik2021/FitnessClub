@@ -1,0 +1,59 @@
+body
+{
+    display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+}
+
+.body-content
+{
+    flex-grow:1;
+}
+footer
+{
+	background-color:rgba(050, 050, 050, 0.7);
+	margin-top: 50px;	
+	text-align: center;
+}
+
+.links {
+	margin:0px;
+	padding: 0px;
+	list-style: none;
+	
+}
+.links li {
+	margin: 10px 25px 10px 0;
+	display: inline-block;
+	font-size: 36px;
+}
+.links li a {
+	color: #fffdfd;
+}
+
+.links li.twitter a:hover {
+	color: #55acee;
+}
+
+.links li.google-plus a:hover {
+	color: #dd4b39;
+}
+.links li.youtube a:hover {
+	color: #b31217;
+}
+
+.links li.facebook a:hover {
+	color: #3b5998;
+}
+
+* {
+	box-sizing: border-box;
+  }
+
+.image span {
+    visibility: hidden;
+}
+ 
+.image img:hover + span {
+    visibility: visible;
+}

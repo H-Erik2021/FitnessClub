@@ -1,0 +1,72 @@
+{% extends "layout.twig" %}
+
+{% block title %}MUSQUASH Club{% endblock %}
+
+{% block content %}
+<div class="">
+    <div class="row ">
+        <div class="col-8">
+        <h1 class="" style="text-align:right; margin-top:30px; color:#b22405">{{ montitre }}</h1>
+        </div>
+        <div class="col-4">
+        <img src="photos/logo.png" class="" alt="responsive image" style="margin-left:200px;width:200px; height:150px;  "/>
+        </div>
+    </div>
+</div>
+<div class="container mt-5" style="">
+        <div class="d-flex justify-content-start">
+            <div>
+                <h3 style="margin-left:75px; color:#f58a4b ">Salle de Gymnastique</h3>
+                <a href="{{ url_for('pageGymnastique') }}" style="text-decoration:none">
+                <p class="image">
+                <img src="photos/acceuil/img-1.jpg" class="img-thumbnail" alt="responsive image" style="width:400px;height:300px" /> 
+                <span class="text-center" style="background-color:rgba(050, 050, 050, 0.7); float:right; heigth:300px; width:500px;align-items:center; color:#f58a4b; font-size:18px ">
+                    Pour Qui ?<br/><br/>
+                    Pour les novices qui souhaitent se mettre au sport, pour ceux qui veulent reprendre une activité sportive ou encore 
+                    pour les sportifs avérés qui souhaitent accroître leur niveau d’endurance.
+                    Le cardio-training s’adapte à tes besoins et à ton niveau d’endurance. 
+                    Tu vas à ton rythme et augmente l’intensité et/ou la durée au fil des entraînements. 
+                    Ta respiration se régule, tes muscles se développent et ton corps se transforme.
+                </span>
+                </p>
+               </a>
+            </div>             
+        </div>
+        <div class="d-flex justify-content-center" style=" margin-top:10px">
+            <div>
+                <h3 style="margin-left:75px; color:#f58a4b ">Salle de Musculation</h3>
+                <a href="{{ url_for('pageMusculation') }}" style="text-decoration:none">
+                <p class="image">
+                <img src="photos/acceuil/img-2.jpg" class="img-thumbnail" alt="responsive image"  style="width:400px;height:300px">
+                <span class="text-center" style="background-color:rgba(050, 050, 050, 0.7); float:right; heigth:300px; width:500px;align-items:center; color:#f58a4b; font-size:18px ">
+                    Pour Qui ?<br/><br/>
+                   Pour ceux qui veulent pratiquer la musculation de manière occasionnelle en complément d’une autre activité sportive, 
+                    mais aussi pour tous ceux qui souhaitent transformer leur corps en décuplant leur masse musculaire et pousser leurs limites !
+                    Simples d’utilisation, les stations de musculation sont issues des plus grandes marques et proposent des programmes sur mesure pour 
+                    répondre aux besoins de débutants et des amateurs de la musculation.
+                </span>
+                </p>
+               </a>
+            </div>   
+        </div>
+        <div class="d-flex justify-content-end" style="margin-top:10px">
+            <div>
+              <h3 style="margin-left:75px; color:#f58a4b ">Salle de Squash</h3>
+                <a href="{{ url_for('pageSquash') }}" style="text-decoration:none">
+                <p class="image">
+                <img src="photos/acceuil/img-3.jpg" class="img-thumbnail" alt="responsive image" style="width:400px;height:300px">
+                <span class="text-center" style="background-color:rgba(050, 050, 050, 0.7); float:right; heigth:300px; width:500px;align-items:center; color:#f58a4b; font-size:18px ">
+                    Pour Qui ?<br/><br/>
+                    Vous recherchez un sport individuel plutôt défoulant et énergique,
+                    au plaisir immédiat sans trop de contraintes et peu onéreux ?
+                    Partez pour un voyage sur la planète SQUASH dans notre section,
+                    en quarante minutes de duel à raquettes, 
+                    vous ressentirez un bien-être aussi bien dans votre corps que dans votre esprit …
+                </span>
+                </p>
+               </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

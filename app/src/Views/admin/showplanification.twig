@@ -1,0 +1,81 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste des Planning{% endblock %}
+{% block content %}
+{% if planifications|length %}
+    <h1 class="text-center mt-5" >Liste des Planning&nbsp;
+        <a href="{{ url_for('createplanification') }}" title="Ajouter un  Planning" class="btn btn-outline-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <label for "search"> Votre recherche</label>
+    <input id="search" type="text" size="80" placeholder="Saisissez la date example(2021-05-10)" onkeyup="javascript:rafraichirTableau()">
+    <div class="container-fluid text-center table-responsive mt-5">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' id="tabutils" >
+            <thead >
+                <tr style="height:50px">
+                    <th>ID</th>
+                    <th>DatePlanification</th> 
+                    <th>NomSalle</th>
+                    <th>TypeCours</th>
+                    <th>DureeCours</th>
+                    <th>Personnel</th>               
+                    <th class="text-info">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>       
+    
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script>
+function rafraichirTableau() {
+    // En javascript classique : console.log(document.getElementById("search").value);
+
+    // 1) On récupère ce qui a été Saisi
+    saisie = $('#search').val();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options2 = { hour: '2-digit', minute:'2-digit'};
+    //console.log(saisie);
+
+    // 2) On appelle l'API avec la chaine saisie : /usersapi/{search}
+    jQuery.getJSON( '/admin/planificationapi/' + saisie, function( data ) {
+        //console.log( data );
+        // 3) L'API nous renvoie en JSON les données correspondantes dans data
+
+        // 4) On vide le contenu (ancien) du tableau
+        $("#tabutils > tbody").html("");
+
+        // 5) On boucle sur les données renvoyées
+        $.each(data, function(i, ligne){
+            var date = new Date(ligne.datePlanification['date']);
+            var date2 = new Date(ligne.DureeCours['date']);
+//console.log(ligne);
+            // 6) On crée une ligne de tableau et les colonnes correspondantes
+            var chaine = '';
+            chaine += '<tr>';
+            chaine += '<td>' + ligne.id + '</td>';
+            chaine += '<td>' + date.toLocaleDateString('fr-FR', options) + '</td>';
+            chaine += '<td>' + ligne.NomSalle + '</td>';
+            chaine += '<td>' + ligne.NomTypeCours  + '</td>';
+            chaine += '<td>' + date2.toLocaleTimeString('fr-FR', options2) + '</td>';
+            chaine += '<td>' + ligne.NomPerso + '</td>';
+            chaine += '<td>';
+            
+            chaine += '<a href="' + "{{ url_for('modifyplanification', {'id': "ligne.id" }) }}" + '" title="Modifier" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>';
+            chaine += '<a href="' + "{{ url_for('deleteplanification', {'id': "ligne.id" }) }}" + '" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>';
+            chaine+= '</td>';
+            chaine+= '</tr>';
+            chaine = chaine.replace("ligne.id", ligne.id);
+            chaine = chaine.replace("ligne.id", ligne.id);
+            
+            $("#tabutils").find('tbody').append( chaine);
+        });
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {{user.NomPerso}}{% endblock %}
+{% block content %}
+<h3 class="text-center">{{ action }} {{ user.NomPerso }} {{user.PrenomPerso}}</h3>
+<div class="container-fluid text-center">
+    <form method="post" action="{{url_for('savestaff')}}" >
+        {{ macros.champTexte('NomPerso', 'Nom : ', 'Indiquez le nom de la personne', user.NomPerso) }}
+        {{ macros.champTexte('PrenomPerso', 'Prénom : ', 'Indiquez le Prénom de la personne', user.PrenomPerso) }}
+        {{ macros.champTexte('AdressePerso', 'Adresse : ', 'Indiquez l adresse de la personne', user.AdressePerso) }}
+        {{ macros.champTexte('TelPerso',  'Téléphone : ', 'Indiquez le téléphone de la personne', user.TelPerso) }}
+        {{ macros.champMail('MailPerso', 'Couriel : ', 'Indiquez le couriel de la personne', user.MailPerso) }}
+        {{ macros.champTexte('Password',  'Password : ', 'Indiquez le mot de passe de la personne', user.Password) }}
+        {{ macros.champSelect('IdFonction', 'Fonction : ', fonctions , user.fonction.id) }}
+        {{ macros.champCache('id', user.id) }}
+
+        <div class="form-group text-center row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger"> <a class="text-light" href="{{url_for('showstaff')}}"  style="text-decoration:none"> Annuler </a></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

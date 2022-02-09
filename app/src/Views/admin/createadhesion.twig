@@ -1,0 +1,29 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {% endblock %}
+{% block content %}
+<h3 class="text-center">{{ action }}  </h3>
+<div class="container-fluid text-center">
+    <form method="post" action="{{url_for('saveadhesion')}}" > 
+        {{ macros.champSelectFormule('formuleId','Formule Adhesion:', formules , adhesion.formule.getId()) }}
+        {{ macros.champTexte('dureeAdhesion', ' DureeAdhesion (Mois) : ', 'Indiquez le nombre de mois adhesion', adhesion.dureeAdhesion) }}
+        {{ macros.champDate('dateAdhesion', 'DateAdhesion :', 'Indiquez la date ', adhesion.DateAdhes|date('Y-m-d')) }} 
+        {{ macros.champTexte('tarifAdhesion', ' TarifAdhesion : ', 'Indiquez le tarif adhesion', adhesion.tarifAdhesion) }} 
+        {{ macros.champSelectClient('clientId', ' Nom du client : ', clients , adhesion.client.getId()) }} 
+        {{ macros.champSelectNbCasier('casierId', ' Numero de casier : ', casiers , adhesion.casier.IdCasier) }}
+         
+        {{ macros.champCache('id', adhesion.id) }}
+
+        <div class="form-group text-center row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger"> <a class="text-light" href="{{url_for('showadhesion')}}"  style="text-decoration:none"> Annuler </a></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

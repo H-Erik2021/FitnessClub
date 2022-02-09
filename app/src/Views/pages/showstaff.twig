@@ -1,0 +1,48 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Liste du/des Personnel(s) correspondant(s){% endblock %}
+{% block content %}
+{% if users|length %}
+    <h1 class="text-center mt-5" >Liste du/des Personnel(s)&nbsp;
+        <a href="{{ url_for('createstaff') }}" title="Ajouter un Client" class="btn btn-outline-success btn-sm"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <div class="container-fluid text-center table-responsive mt-5 " >   
+        <table class='table-hover table-striped table-bordered table-dark w-100 '>
+            <thead>
+                <tr style="height:50px">
+                    <th >NumPerso</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adresse</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Fonction</th>
+                    <th>Créé le</th>
+                    <th class="text-info">Actions</th>
+                </tr>
+            </thead>
+            {% for user in users %}
+            <tbody>
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.NomPerso|upper }}</td>
+                    <td>{{ user.PrenomPerso|capitalize }}</td>
+                    <td>{{ user.AdressePerso }}</td>
+                    <td>{{ user.TelPerso }}</td>
+                    <td>{{ user.MailPerso }}</td>
+                    <td>{{ user.Password }}</td>
+                    <td>{{ user.fonction.LibelleFonction }}</td>
+                    <td>{{ user.created_at|localizeddate('full','none',locale) }}</td>
+                    <td>
+                        <a href="{{ url_for('modifystaff', { 'id': user.id }) }}" title="Modifier" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                        <a href="{{ url_for('deletestaff', { 'id': user.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}

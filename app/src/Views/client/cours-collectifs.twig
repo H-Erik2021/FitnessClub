@@ -1,0 +1,136 @@
+{% extends "client.twig" %}
+
+{% block title %}MUSQUASH Club{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-row  justify-content-between align-items-center p-3">
+    <div class="p-1" style="width:200px"></div>
+    <div class="p-1"> <h1 class="text-center" style="text-align:center; color:#f58a4b;" >{{ montitre}} </h1></div>
+    <div class="p-1"><a class="btn btn-outline-light" href="{{ url_for('showplanningcollectif') }}" style="font-size:15px; color:#f58a4b" > Réservation cours Collectif</a></div>
+</div> 
+
+<div class="container-fluid text-center">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active img-fluid">
+                        <img src="/photos/cours-collectifs/squash1.jpg" class="w-60" alt="First slide" style="height:360px">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="/photos/cours-collectifs/squash2.jpg" class="w-60" alt="Second slide" style="height:360px">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="/photos/cours-collectifs/danse.jpg" class="w-60" alt="Third slide" style="height:360px">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="/photos/cours-collectifs/yoga.jpg" class="w-60" alt="Third slide" style="height:360px">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="/photos/cours-collectifs/step.jpg" class="w-60" alt="Third slide" style="height:360px">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span><i class="fa fa-chevron-left fa-3x" aria-hidden="true" style="color:#f58a4b; margin-left:300px"></i></span>
+                    <span class="sr-only">Précédente</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span><i class="fa fa-chevron-right fa-3x" aria-hidden="true" style="color:#f58a4b; margin-right:300px"></i></span>
+                    <span class="sr-only">Suivante</span>
+                </a>
+            </div>
+            <hr/ style=" margin-top:30px; ">           
+</div>
+<div class="container col-8" >
+    <div class="row no-gutters " style=" margin-top:30px ">
+        <div class="col-6 " >            
+            <div class="col-12 d-flex justify-content-center ">
+            <img src="/photos/cours-collectifs/yoga.jpg" class="img-thumbnail"  alt="membre du club en plein effort" >
+            </div>            
+        </div>
+
+        <div class="col-6 border " style="background-color:rgba(050, 050, 050, 0.7);"  >
+            <div class="" style="padding:10px">
+                <h3 style="text-align: center">
+                    <span style="font-size: 25px;color:#f58a4b">COURS COLLECTIFS</span>
+                </h3>
+            </div>
+            <div class="col-12 " >
+                <div class="text-center justify-content-end rounded" style="padding:10px">
+                    <p style="text-align:justify; color:#f58a4b; font-size:18px">
+                    Les cours collectifs de Musquash Club regroupent plusieurs formats d’activités
+                    et différentes méthodes d’exercices. Chacun d’entre eux permet d’atteindre des objectifs différents.
+                    Dépense calorique, perte de poids, musculation, force, endurance, tonicité du corps…
+                    Tu trouveras toujours un cours qui permet de répondre à ton besoin. En plus, chez Musquash Club,
+                    les cours collectifs sont disponibles toute la journée !
+                    Tu peux t’entraîner à n’importe quelle heure ! En complément des cours animés par un coach,
+                    Musquash Club met à la disposition de tous ses adhérents
+                    des cours collectifs en « libre-service » sur écran géant.
+                    Nos clubs sont équipés de salles dédiées pour la rétroprojection
+                    de tes cours préférés dans une ambiance unique qui t’incitera à te dépasser.
+                    Plus de plaisir pour plus de résultats avec Musquash Club.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row no-gutters" style="margin-top:20px">
+        <div class="col-6 order-2" >            
+            <div class="col-12 d-flex justify-content-center ">
+            <img  src="/photos/cours-collectifs/danse.jpg" class="img-thumbnail"  alt="membre du club en plein effort" >
+            </div>            
+        </div>
+
+        <div class="col-6  border border-white order-1"  style="background-color:rgba(050, 050, 050, 0.7);" >
+            <div class="" style="padding:10px">
+               <h3 style="text-align:center; color:#f58a4b">
+               <span style="font-size: 25px">POUR QUI ?</span>
+               </h3>
+            </div>        
+            <div class="col-12 " >
+                <div class="text-center justify-content-end" style="padding:10px">
+                    <p style="text-align: justify;color:#f58a4b; font-size:18px;">
+                    Pour tous ! La variété des cours proposés par Musquash Club
+                    te permettra de t’entraîner à ton gré, à ton rythme et selon tes envies.
+                    Ce sont plus de 140 cours par semaine qui sont mis à ta disposition :
+                    renforcement musculaire (abdos, abdos-fessiers, cours LesMills),
+                    cardio-training (step, gym-cardio…), yoga, pilate, stretching… 
+                    Découvre-les et fais ton choix. Tu ne pourras plus t’en passer !</p>
+		        </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row no-gutters " style=" margin-top:30px ">
+        <div class="col-6 " >            
+            <div class="col-12 d-flex justify-content-center " >
+            <img src="/photos/cours-collectifs/squash2.jpg" class="img-thumbnail"  alt="membre du club en plein effort" >
+            </div>            
+        </div>
+
+        <div class="col-6 border " style="background-color:rgba(050, 050, 050, 0.7);"  >
+            <div class="" style="padding:10px">
+                <h3 style="text-align: center">
+                    <span style="font-size: 25px;color:#f58a4b">POUR QUOI ?</span>
+                </h3>
+            </div>
+            <div class="col-12 " >
+                <div class="text-center justify-content-end rounded" style="padding:10px">
+                    <p style="text-align:justify; color:#f58a4b; font-size:18px">
+                    Pour te motiver, pour travailler en groupe, pour suivre un coach,
+                    pour pratiquer de manière ludique et pour compléter ta séance de Squash.
+                    Tu as forcément une bonne raison de suivre les cours collectifs chez Musquash Club !
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+        
+</div>
+<div class="text-center mt-5" >    
+    <a class="btn btn-outline-light" href="{{ url_for('showplanningcollectif') }}" style="font-size:25px; color:#f58a4b" > Réservation cours Collectif</a>
+    </div>
+{% endblock %}

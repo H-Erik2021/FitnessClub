@@ -1,0 +1,69 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {% endblock %}
+{% block content %}
+
+{% if planifications|length %}
+    <h1 class="text-center mt-5" >{{ action}}</h1>
+
+   <div class="container-fluid text-center table-responsive mt-5">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr style="height:50px">
+                    <th>Id</th>
+                    <th>DatePLanification</th>
+                    <th>Nom de Salle</th>                     
+                    <th>TypeCours</th>
+                    <th>DureeCours</th>
+                    <th>Capacité</th>
+                    <th>Coach</th>
+                    <th>Client</th>               
+                    <th class="text-info">Actions</th>
+                </tr>
+            </thead>
+            
+             {% for planification in planifications %}
+            <tbody>
+                <form action="{{ url_for('saveresa') }}" method="post">
+                    <tr>
+                        <td>{{ planification.id}}</td>
+                        <td>{{ macros.champTexte3('datePlanification',planifications, planification.datePlanification|localizeddate('full','short',locale))}}</td>               
+                        <td>{{ macros.champTexte3('nomSalleId',planifications, planification.salle.nomSalle)}}</td>
+                        <td>{{ macros.champTexte3('typeCoursId',planifications, planification.typeCours.nomTypeCours)}}</td>
+                        <td>{{ macros.champTexte3('typeCoursId',planifications, planification.typeCours.DureeCours|date('H:i'))}}</td>
+                        <td>{{ macros.champTexte3('persoId',planifications, planification.perso.NomPerso )}}</td>
+                        <td>{{ planification.reservations|length }}/ {{ planification.typeCours.NbMaxDisponibilite}}</td>
+                        <td>{{ macros.champSelectClient2('clientId', clients , reservation.client.getId()) }} </td>
+                        
+                        <td>{% set isReserved = false %}
+                            {% for reservation in planification.reservations %}
+                            {% if reservation.client.id == NumClient %}
+                            {% set isReserved = true %}
+                            {% endif %}
+                            {% endfor %}
+                            {% if isReserved %} déjà réservé {% else %}
+                            {% if planification.reservations|length < planification.typeCours.NbMaxDisponibilite %}
+                            <button type="submit" onclick="verif(this.href);return false;" title="Valider" class="btn btn-outline-primary btn-sm">Réservable</button>
+                            {% else %} Complet {% endif %}
+                        {% endif %} </td>
+                        
+                    </tr>
+                </form>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script>
+function verif(){
+   if(confirm("Attention après validation si vous souhaitez annuler votre réservation, il vous faut appeler à l'acceuil du Club."))
+      document.location.href = url_for('saveresa')
+}
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {% endblock %}
+{% block content %}
+
+{% if planifications|length %}
+<div class="d-flex flex-row  justify-content-between align-items-center ">
+    <div class="p-1"></div>
+    <div class="p-1"> <h1 class="text-center mt-5" >{{ action}} </h1></div>
+    <div class="p-1"> <a href="{{ url_for('historiqueResa') }}" title=" Historique" class="btn btn-outline-success btn-sm "> <i class="fa fa-list-alt fa-2x"></i></a></div>
+</div>  
+    <div class="container-fluid text-center table-responsive mt-5">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr style="height:50px">
+                    <th>Id</th>
+                    <th>DatePLanification</th>
+                    <th>Nom de Salle</th>                     
+                    <th>TypeCours</th>
+                    <th>DureeCours</th>
+                    <th>Capacité</th>
+                    <th>Coach</th>
+                    <th>Clients Résa</th>               
+                    <th class="text-info">Nouvelle Résa</th>
+                </tr>
+            </thead>
+            {% for planification in planifications %}
+            <tbody>
+                <form action="{{ url_for('saveresa', { 'idPlanification': planification.id }) }}" method="post">
+                    <tr>
+                        <td>{{ planification.id }}</td>
+                        <td>{{ planification.datePlanification|localizeddate('full','short',locale)}}</td> 
+                        <td>{{ planification.salle.nomSalle}}</td>                  
+                        <td>{{ planification.typeCours.nomTypeCours}}</td>
+                        <td>{{ planification.typeCours.DureeCours|date('H:i')}}</td>
+                        <td>{{ planification.reservations|length }}/ {{ planification.typeCours.NbMaxDisponibilite}}</td>
+                        <td>{{ planification.perso.NomPerso|upper}}</td>
+                        <td>{% for reservation in planification.reservations %}
+                            <div class="d-flex flex-row  justify-content-between align-items-center ">
+                                <div class="p-1">{{ reservation.client.NomClient|upper }} {{ reservation.client.PrenomClient|capitalize }}</div>
+                                <div class="p-1"> <a href="{{ url_for('deletereservation', { 'id': reservation.id }) }}" title="Supprimer" class="btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></a><br/></div>
+                            </div>
+                            {% endfor %}
+                        </td>
+                        
+                        <td>{% if planification.reservations|length < planification.typeCours.NbMaxDisponibilite %}
+                            {{ macros.champSelectClient2('clientId', clients , planification.reservations) }}                      
+                            <button type="submit" onclick="verif(this.href);return false;" title="Valider" class="btn btn-outline-primary btn-sm">Réservable</button>
+                            {% else %} Complet {% endif %}
+                        </td>                    
+                    </tr>
+                </form>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script>
+function verif(idPlanification, idClient){
+    if(confirm("Attention après validation si vous souhaitez annuler votre réservation, il vous faut appeler à l'acceuil du Club."))
+        document.location.href = {{ url_for('saveresa', { 'idPlanification': idPlanification, 'idClient': idClient }) }};
+}
+</script>
+{% endblock %}

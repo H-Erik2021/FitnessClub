@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {{user.NomClient}}{% endblock %}
+{% block content %}
+<h3 class="text-center" style="color:#b22405; margin-top:50px">{{ action }} {{ user.NomClient }}</h3>
+<div class="container-fluid text-center" style=" margin-top:50px;">
+    <form method="post" action="{{url_for('saveclient')}}" >
+        {{ macros.champTexte2('NomClient', 'Nom : ', 'Votre nom', user.NomClient) }}
+        {{ macros.champTexte2('PrenomClient', 'Prénom : ', 'Votre Prénom', user.PrenomClient) }}
+        {{ macros.champMail2('MailClient', 'Email : ', 'Votre adresse email', user.MailClient) }}
+        {{ macros.champTexte2('Login',  'Identifiant : ', 'Votre Identifiant', user.Login) }}
+        {{ macros.champTexte2('Password',  'Mot de passe : ', 'Votre Mot de passe', user.Password) }}
+        {{ macros.champTexte2('Password2',  'Mot de passe vérif : ', 'Retaper Votre Mot de passe', user.Password) }}
+        {{ macros.champCache('id', user.id) }}
+
+        <div class="form-group text-center row justify-content-md-center" style=" margin-top:50px">
+            <div class="col-sm-12"></div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+             <div class="col-sm-2">
+                <button type="button" class="btn btn-danger"> <a class="text-light" href="{{url_for('pageAccueil')}}" style="text-decoration:none" > Annuler </a></button>
+            </div>
+        </div>
+        <p class="text-light" style="font-size:25px">
+		Déjà Membre ? <a href="{{ url_for('app_login') }}" style="font-size:25px" >Se connecter</a>
+	</p>
+    </form>
+</div>
+<div style="height:160px">
+</div>
+
+{% endblock %}
+

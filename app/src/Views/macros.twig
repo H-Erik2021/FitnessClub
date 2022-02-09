@@ -1,0 +1,237 @@
+{% macro champTexte(nomduchamp, libelle, pholder, valeur)%}
+    <div class="form-group row justify-content-md-center">
+        <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{ libelle }}</label>
+        <div class="col-md-5">
+        <input type="text" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro champTexte2(nomduchamp, libelle, pholder, valeur)%}
+    <div class="form-group row justify-content-md-center">
+        <label for="{{nomduchamp}}" class="col-sm-3 col-form-label" style="color:#f58a4b">{{ libelle }}</label>
+        <div class="col-md-auto">
+        <input type="text" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro champTexte3(nomduchamp, pholder, valeur)%}
+    <div class="form-group row justify-content-md-center">
+        
+        <div class="col-md-auto">
+        <input type="text" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" >
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro champMail(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{ libelle }}</label>
+    <div class="col-md-5">
+      <input type="email" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champMail2(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-3 col-form-label" style="color:#f58a4b">{{ libelle }}</label>
+    <div class="col-md-auto">
+      <input type="email" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champDatetime(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-2 col-form-label" style="">{{ libelle }}</label>
+    <div class="col-md-5">
+      <input type="datetime-local" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champDatetime2(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-3 col-form-label" style="color:#f58a4b">{{ libelle }}</label>
+    <div class="col-md-auto">
+      <input type="datetime-local" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champDate(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-2 col-form-label" style="">{{ libelle }}</label>
+    <div class="col-md-5">
+      <input type="date" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champTime(nomduchamp, libelle, pholder, valeur)%}
+  <div class="form-group row justify-content-md-center">
+    <label for="{{nomduchamp}}" class="col-sm-2 col-form-label" style="">{{ libelle }}</label>
+    <div class="col-md-5">
+      <input type="time" class="form-control" name="{{nomduchamp}}" placeholder="{{pholder}}" value="{{valeur}}" required="required">
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro champSelect(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.LibelleFonction}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectClient(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.NomClient}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectClient2(nomduchamp, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      
+      <div class="col-md-auto">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                {% set hasReserved = false %}
+                {% for reservation in valeur %}
+                    {% if reservation.client.id == option.id %}
+                    {% set hasReserved = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if not hasReserved %} 
+                <option value={{option.id}}>{{option.NomClient}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectFormule(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.NomFormule}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectTypeSalle(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.nomTypeSalle}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectNomSalle(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.nomSalle}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectTypeCours(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.nomTypeCours}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectPerso(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.nomPerso}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champSelectNbCasier(nomduchamp, libelle, options, valeur)%}
+    <div class="form-group row justify-content-md-center">
+      <label for="{{nomduchamp}}" class="col-sm-2 col-form-label">{{libelle}}</label>
+      <div class="col-md-5">
+        <select name="{{nomduchamp}}" class="form-control">
+            {% for option in options %}
+                <option {{ valeur == option.id ? 'selected'}} value={{option.id}}>{{option.id}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro champFichier(nomduchamp, libelle, icone)%}
+<div class="form-group row justify-content-md-center">
+  <div class="col-sm-2">
+    <i class="fa {{icone}}"></i>
+  </div>
+  <div class="col-md-5">
+    <div class="custom-file">
+        <label for="{{nomduchamp}}" class="custom-file-label">Choisissez {{libelle}}...</label>
+        <input type="file" class="custom-file-input" name="{{nomduchamp}}">
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro champFichier2(nomduchamp, libelle, icone)%}
+<div class="form-group row justify-content-md-center">
+  <div class="col-sm-2">
+    <i class="fa {{icone}}"></i>
+  </div>
+  <div class="col-md-5">
+    <div class="custom-file">
+        <label for="{{nomduchamp}}" class="custom-file-label">Choisissez {{libelle}}...</label>
+        <input type="file" class="custom-file-input" name="{{nomduchamp}}">
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro champCache(nomduchamp, valeur)%}
+    <input type="hidden" name="{{nomduchamp}}" value="{{valeur}}">
+{% endmacro %}

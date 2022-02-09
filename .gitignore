@@ -1,0 +1,16 @@
+.idea/*
+composer.lock
+composer.phar
+vendor/*
+storage/cache/*
+storage/logs/*
+.env
+!storage/cache/.gitkeep
+!storage/logs/.gitkeep
+node_modules/*
+package-lock.json
+docker/mysql
+docker/nginx/logs
+base_de_données/insert-base-donnees.sql
+base_de_données/sauvegardeProjet.sql
+base_de_données/musquash.sql

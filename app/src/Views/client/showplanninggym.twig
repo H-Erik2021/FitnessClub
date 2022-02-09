@@ -1,0 +1,64 @@
+{% extends "client.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}MUSQUASH Club
+{% endblock %}
+
+{% block content %}
+{% if planifications|length %}
+    <h1 class="text-center mt-5" style="color: #f58a4b">{{ montitre }}</h1>
+    <div class="container-fluid text-center table-responsive mt-5 body-content">   
+        <table  class='table-hover table-striped table-bordered table-dark w-100' >
+            <thead >
+                <tr style="height:50px">
+                    <th>Date des cours</th> 
+                    <th>Nom de Salle</th>
+                    <th>Type de Cours</th>
+                    <th>Duree du Cours</th>
+                    <th>Le Coach</th>
+                    <th>Capacité</th>                  
+                    <th>Je m'inscris</th>
+                </tr>
+            </thead>
+            {% for planification in planifications %}
+            <tbody>
+                <tr>
+                    <td>{{ planification.datePlanification|localizeddate('full','short',locale)}}</td>               
+                    <td>{{ planification.salle.nomSalle}}</td>
+                    <td>{{ planification.typeCours.nomTypeCours}}</td>
+                    <td>{{ planification.typeCours.DureeCours|date('H:i')}}</td>
+                    <td>{{ planification.perso.NomPerso|upper }} {{ planification.perso.PrenomPerso|capitalize }}</td>
+                    <td>{{ planification.reservations|length }}/ {{ planification.typeCours.NbMaxDisponibilite}}</td>
+                    
+                    
+                    <td>{% set isReserved = false %}
+                    {% for reservation in planification.reservations %}
+                    {% if reservation.client.id == NumClient %}
+                    {% set isReserved = true %}
+                    {% endif %}
+                    {% endfor %}
+                    {% if isReserved %} <div class="text-warning"> déjà réservé </div> {% else %}
+                      {% if planification.reservations|length < planification.typeCours.NbMaxDisponibilite %}
+                      <a href="{{ url_for('savereservation', { 'idPlanification': planification.id }) }}" onclick="verif(this.href);return false;" title="Valider" class="btn btn-outline-primary btn-sm">je réserve</a>
+                      {% else %} <div class="text-danger"> Complet </div> {% endif %}
+                    {% endif %} </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+    <h3>Désolé, aucun résultat ne correspond...</h3>
+{% endif %}
+
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script>
+function verif(){
+   if(confirm("Attention après validation si vous souhaitez annuler votre réservation, il vous faut appeler à l'acceuil du Club."))
+      document.location.href = url_for('savereservation', { 'idPlanification': planification.id })
+}
+</script>
+{% endblock %}

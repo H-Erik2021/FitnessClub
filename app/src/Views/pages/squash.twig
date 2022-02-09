@@ -1,0 +1,118 @@
+{% extends "layout.twig" %}
+
+{% block title %}MUSQUASH Club{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center; color:#f58a4b;">{{ montitre }}</h1>
+<div class="container-fluid text-center">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active img-fluid">
+                <img src="/photos/squash/img-1.jpg" class="w-60" alt="First slide" style="height:360px">
+            </div>
+            <div class="carousel-item ">
+                <img src="/photos/squash/img-2.jpg" class="w-60" alt="Second slide" style="height:360px">
+            </div>
+            <div class="carousel-item ">
+                <img src="/photos/squash/img-3.jpg" class="w-60" alt="Third slide" style="height:360px">
+            </div>
+            <div class="carousel-item ">
+                <img src="/photos/squash/img-4.jpg" class="w-60" alt="Third slide" style="height:360px">
+            </div>
+            <div class="carousel-item ">
+                <img src="/photos/squash/img-5.jpg" class="w-60" alt="Third slide" style="height:360px">
+            </div>
+            <div class="carousel-item ">
+                <img src="/photos/squash/img-6.jpg" class="w-60" alt="Third slide" style="height:360px">
+            </div>
+        </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span><i class="fa fa-chevron-left fa-3x" aria-hidden="true" style="color:#f58a4b; margin-left:300px"></i></span>
+                <span class="sr-only">Précédente</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span><i class="fa fa-chevron-right fa-3x" aria-hidden="true" style="color:#f58a4b; margin-right:300px"></i></span>
+            <span class="sr-only">Suivante</span>
+            </a>
+        </div>                      
+    </div>
+    <hr/ style=" margin-top:30px ">           
+</div>
+<div class="container col-8 " >
+    <div class="row no-gutters " style=" margin-top:30px ">
+        <div class="col-6 " >            
+            <div class="col-12 d-flex justify-content-center ">
+            <img src="/photos/squash/img-4.jpg" class="img-thumbnail"  alt="membre du club en plein effort" >
+            </div>            
+        </div>
+
+        <div class="col-6 border " style="background-color:rgba(050, 050, 050, 0.7);" >
+            <div class=""style="padding:10px">
+                <h3 style="text-align: center">
+                    <span style="font-size:25px; color:#f58a4b">INFOS GENERALES SUR LE SQUASH</span>
+                </h3>
+            </div>
+            <div class="col-12 " >
+                <div class="text-center justify-content-end rounded" style="padding:10px">
+                    <p style="text-align:justify; color:#f58a4b; font-size:18px">
+                    Le squash est un sport de raquette en salle accessible à tous ;
+                    enfants et adultes trouveront du plaisir à pratiquer
+                    ce jeu simple mais dynamique et efficace.
+                    De plus le squash ne demande que peu de temps : une heure suffit en totalité !
+                    Le squash permet une dépense physique considérable,
+                    entraînant le système cardio et brûle énormément de calories en très peu de temps :
+                    - 750 cal/H ce qui équivaut à plus du double du tennis.
+                    Le squash améliore donc la condition physique mais développe aussi les réflexes,
+                    l'adresse, sans oublier l'aspect tactique. Les jambes ainsi que les fessiers sont sollicités,
+                    renforcés et raffermis de manière spectaculaire.
+                    Le squash est donc le terrain de jeu idéal pour toute la famille
+                    contribuant à l'amélioration du physique en toute convivialité.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row no-gutters" style="margin-top:20px">
+        <div class="col-6 order-2" >            
+            <div class="col-12 d-flex justify-content-center ">
+            <img  src="/photos/squash/img-5.jpg" class="img-thumbnail"  alt="membre du club en plein effort" >
+            </div>            
+        </div>
+
+        <div class="col-6 border border-white order-1" style="background-color:rgba(050, 050, 050, 0.7);" >
+            <div class=""style="padding:10px" >
+               <h3 style="text-align:center; color:#f58a4b">
+               <span style="font-size:25px">LES PRINCIPAUX FONDAMENTAUX</span>
+               </h3>
+            </div>        
+            <div class="col-12 " >
+                <div class="text-center justify-content-end"style="padding:10px" >
+                    <p style="text-align: justify;color:#f58a4b; font-size:18px">
+                    Le squash est d’une approche très ludique. Ne vous méprenez pas,
+                    c’est un sport très technique. Si vous désirez progresser rapidement
+                    et prendre ainsi plus de plaisir à le pratiquer, prenez quelques leçons
+                    avec l’un des 160 éducateurs brevetés d’Etat de squash … vous ne le regretterez pas !
+                    Les principes de base.
+                    Se replacer au T, envoyer la balle le plus loin possible du T :
+                    les deux coins avants, les deux coins arrières.
+                    Les trajectoires les plus efficaces sont celles collées aux murs latéraux appelées parallèles.
+                    Jouer les balles ayant rebondi dans la moitié gauche avec les épaules face au mur gauche et vice versa.
+                    S'arrêter pour frapper la balle.
+                    Eviter de placer ses appuis dans la zone grisée (B).
+                    </p>
+		        </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>    
+</div>
+    <div class="text-center mt-5" >
+    <a class="btn btn-outline-light" href="{{ url_for('signup') }}" style="font-size:25px; color:#f58a4b" >S'incrire</a>
+    </div>
+{% endblock %}

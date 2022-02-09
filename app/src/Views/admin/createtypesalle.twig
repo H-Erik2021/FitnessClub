@@ -1,0 +1,24 @@
+{% extends "admin-logger.twig" %}
+{% import "macros.twig" as macros %}
+
+{% block title %}{{ action }} {{ typeSalle.nomTypeSalle}}{% endblock %}
+{% block content %}
+<h3 class="text-center">{{ action }} {{ typeSalle.nomTypeSalle }} </h3>
+<div class="container-fluid text-center">
+    <form method="post" action="{{url_for('savetypesalle')}}" >
+        {{ macros.champTexte('nomTypeSalle', 'nomTypeSalle : ', 'Indiquez le nom du type de salle', typeSalle.nomTypeSalle) }}       
+        
+        {{ macros.champCache('id', typeSalle.id) }}
+
+        <div class="form-group text-center row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger"> <a class="text-light" href="{{url_for('showtypesalle')}}"  style="text-decoration:none"> Annuler </a></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

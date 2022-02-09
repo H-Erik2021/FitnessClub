@@ -1,0 +1,14 @@
+{% extends "admin-logger.twig" %}
+
+{% block title %}Page utilisateur {{user.name}}{% endblock %}
+{% block content %}
+<h1>{{ user.name }}</h1>
+<div class="container-fluid">
+    
+    Email :<strong>{{user.email}}</strong><br/>
+    Tél :<strong>{{user.tel}}</strong><br/>
+    Rang :<strong>{{user.rank.name}}</strong><br/>
+    Créé le :<strong>{{user.datecreate|date("l j F Y à H:i")}}</strong><br/>
+    C'était la semaine <strong>{{user.datecreate|date("W")}}</strong><br/>
+</div>
+{% endblock %}
